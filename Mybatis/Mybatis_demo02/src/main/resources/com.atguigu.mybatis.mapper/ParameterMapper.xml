@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.ParameterMapper">
+  <!--  List<User> getAllUser()放到当前映射文件的注释当中  -->
+    <select id="getAllUser()" resultType="com.atguigu.mybatis.pojo.User">
+      select * from t_user
+    </select>
+
+  <select id="GetUserByUsername" resultType="User">
+    select * from t_user where username = #{username}
+  </select>
+
+  <select id="checkLogin" resultType="User">
+    <!--  若mapper接口中的方法参数为多个时，此时MyBatis会自动将这些参数放在一个map集合中
+	1. 以arg0,arg1...为键，以参数为值；
+	2. 以param1,param2...为键，以参数为值；
+       因此只需要通过\${}和#{}访问map集合的键就可以获取相对应的值，注意${}需要手动加单引号。
+       使用arg或者param都行，要注意的是，arg是从arg0开始的，param是从param1开始的
+    -->
+    select * from t_user where username = #{arg0} and password = #{arg1}
+  </select>
+
+  <!--User checkLoginByMap(Map<String,Object> map);-->
+  <select id="checkLoginByMap" resultType="User">
+    select * from t_user where username = #{username} and password = #{password}
+  </select>
+
+  <!--int insertUser(User user);-->
+  <insert id="insertUser">
+    insert into t_user values(null,#{username},#{password},#{age},#{sex},#{email})
+  </insert>
+
+  <!--User CheckLoginByParam(@Param("username") String username, @Param("password") String password);-->
+  <select id="CheckLoginByParam" resultType="User">
+    select * from t_user where username = #{username} and password = #{password}
+  </select>
+
+
+</mapper>

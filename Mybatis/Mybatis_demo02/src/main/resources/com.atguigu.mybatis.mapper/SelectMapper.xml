@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.SelectMapper">
+      <select id="getUserById" resultType="User">
+          select * from t_user where id =#{id}
+      </select>
+
+    <select id="getAllUser" resultType="User">
+        select * from t_user
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(1) from t_user
+    </select>
+
+    <!--Map<String, Object> getUserToMap(@Param("id") int id);-->
+    <select id="getUserToMap" resultType="map">
+        select * from t_user where id = #{id}
+    </select>
+
+    <!--Map<String, Object> getAllUserToMap();-->
+    <select id="getAllUserToMap" resultType="map">
+        select * from t_user
+    </select>
+
+    <!--Map<String, Object> getAllUserToMap1();-->
+    <select id="getAllUserToMap1" resultType="map">
+        select * from t_user
+    </select>
+
+    <!--List<User> getUserByLike(@Param("username") String username);-->
+    <select id="getUserByLike" resultType="User">
+        <!--select * from t_user where username like '%${mohu}%'-->
+        <!--select * from t_user where username like concat('%',#{mohu},'%')-->
+        select * from t_user where username like "%"#{mohu}"%"
+    </select>
+
+    <delete id="deleteMore">
+        delete from t_user where id in (${ids})
+    </delete>
+</mapper>
