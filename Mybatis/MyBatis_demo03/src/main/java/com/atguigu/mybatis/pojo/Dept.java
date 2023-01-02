@@ -1,0 +1,50 @@
+package com.atguigu.mybatis.pojo;
+
+import java.util.List;
+
+/**
+ * @author Sherry
+ * @date 2022/12/28 20:56
+ */
+public class Dept {
+        private Integer did;
+        private String deptName;
+        private List<Emp> emps;
+        //...构造器、get、set方法等
+
+    public Integer getDid() {
+        return did;
+    }
+
+    public List<Emp> getEmps() {
+        return emps;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public void setDid(Integer did) {
+        this.did = did;
+    }
+
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
+    }
+
+    @Override
+    public String toString() {
+        return "Dept{" +
+                "did=" + did +
+                ", deptName='" + deptName + '\'' +
+                ", emps=" + emps +
+                '}';
+    }
+    public Dept(){};
+
+}
+
